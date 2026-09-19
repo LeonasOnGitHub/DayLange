@@ -7,4 +7,4 @@ RUN ./mvnw dependency:resolve
 COPY src ./src
 RUN ./mvnw clean package -DskipTests
 EXPOSE 8080
-CMD ["java", "-jar", "target/daylange-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "target/daylenge-0.0.1-SNAPSHOT.jar"]
