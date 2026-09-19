@@ -17,7 +17,7 @@ export default function useChallenge(resetStreak) {
     const savedDate = loadDate();
 
     if (savedDate !== today) {
-      if (challenge?.status !== "completed") {
+      if (challenge?.status !== "completed" && typeof resetStreak === "function") {
         resetStreak();
       }
       getRandomChallenge();

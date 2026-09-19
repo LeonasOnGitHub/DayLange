@@ -1,46 +1,28 @@
 import "./App.css";
-import ChallengeCard from "./components/ChallengeCard";
-import Button from "./components/Button";
-import useChallenge from "./hooks/useChallenge";
-import useStreak from "./hooks/useStreak";
-import StreakCounter from "./components/StreakCounter";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import LoginPage from "./pages/LoginPage";
+import HomePage from "./pages/HomePage";
 
+function PrivateRoute({ children }) {
+  const token = localStorage.getItem("token");
+  return token ? children : <Navigate to="/login" />;
+}
 
 export default function App() {
-  const { streak, incrementStreak, resetStreak } = useStreak();
-  const { challenge, setStatus, getRandomChallenge } = useChallenge(resetStreak);
-
-  const handleComplete = () => {
-    setStatus("completed");
-    incrementStreak();
-  };
-
-  const handleFail = () => {
-    setStatus("failed");
-    resetStreak();
-  };
-
   return (
-    <div className="container">
-      <h1 className="title">Daily Challenge</h1>
-      <StreakCounter streak={streak} />
-
-      {challenge ? (
-        <ChallengeCard
-          challenge={challenge}
-          onComplete={handleComplete}
-          onFail={handleFail}
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<LoginPage />} />
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <HomePage />
+            </PrivateRoute>
+          }
         />
-      ) : (
-        <p className="hint">👆 Drück den Button um deine Challenge zu erhalten!</p>
-      )}
-
-      {(!challenge || challenge.status !== "active") && (
-        <Button onClick={getRandomChallenge}>
-          {challenge ? "🔀 Neue Challenge" : "✨ Challenge generieren"}
-        </Button>
-      )}
-    </div>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
