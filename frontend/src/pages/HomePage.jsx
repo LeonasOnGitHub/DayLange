@@ -1,5 +1,4 @@
 import ChallengeCard from "../components/ChallengeCard";
-import StreakCounter from "../components/StreakCounter";
 import TopRow from "../components/TopRow";
 import useStreak  from "../hooks/useStreak";
 import Button from "../components/Button";
