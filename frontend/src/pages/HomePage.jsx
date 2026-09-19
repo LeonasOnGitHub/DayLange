@@ -1,14 +1,15 @@
 import ChallengeCard from "../components/ChallengeCard";
 import StreakCounter from "../components/StreakCounter";
+import TopRow from "../components/TopRow";
+import useStreak  from "../hooks/useStreak";
 import Button from "../components/Button";
 import useChallenge from "../hooks/useChallenge";
-import useStreak from "../hooks/useStreak";
 import "./HomePage.css";
 
 export default function Homepage() {
-    const { streak, incrementStreak, resetStreak } = useStreak();
-    const { challenge, getRandomChallenge, setStatus } = useChallenge();
     
+    const { challenge, getRandomChallenge, setStatus } = useChallenge();
+    const { streak, incrementStreak, resetStreak } = useStreak();
 
     const handleCompleteChallenge = () => {
         setStatus("completed");
@@ -23,7 +24,7 @@ export default function Homepage() {
     return (
         <div className="homepageContainer">
             <h1 className="homepageTitle">Daily Challenge</h1>
-            <StreakCounter streak={streak} />
+            <TopRow streak={streak} />
 
             {challenge ? (
                 <ChallengeCard

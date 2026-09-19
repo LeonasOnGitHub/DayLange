@@ -2,6 +2,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
+import LeaderboardPage from "./pages/LeaderboardPage";
 
 function PrivateRoute({ children }) {
   const token = localStorage.getItem("token");
@@ -18,6 +19,14 @@ export default function App() {
           element={
             <PrivateRoute>
               <HomePage />
+            </PrivateRoute>
+          }
+        />
+         <Route
+          path="/leaderboard"
+          element={
+            <PrivateRoute>
+              <LeaderboardPage />
             </PrivateRoute>
           }
         />
