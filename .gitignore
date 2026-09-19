@@ -1,0 +1,18 @@
+# Abhängigkeiten
+node_modules/
+
+# Umgebungsvariablen
+.env
+.env.local
+
+# Logs
+*.log
+
+# Build
+dist/
+build/
+
+# Betriebssystem
+.DS_Store
+Thumbs.db
+.vercel
